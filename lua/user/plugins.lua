@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "nvim-lualine/lualine.nvim"
   use "lewis6991/impatient.nvim"
+  use "numToStr/Comment.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -74,6 +75,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+
   use({
     "catppuccin/nvim",
     as = "catppuccin"
