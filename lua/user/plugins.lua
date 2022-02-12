@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "nvim-lualine/lualine.nvim"
   use "lewis6991/impatient.nvim"
-  use "numToStr/Comment.nvim"
+  use "tpope/vim-commentary"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -56,6 +56,10 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "hrsh7th/cmp-nvim-lsp"
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
 
    -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
@@ -80,6 +84,7 @@ return packer.startup(function(use)
     "catppuccin/nvim",
     as = "catppuccin"
   })
+  use 'shaunsingh/solarized.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

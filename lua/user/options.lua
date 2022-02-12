@@ -37,6 +37,7 @@ local options = {
   showcmd = true,
   autowrite = true,
   autoread = true,
+  timeoutlen = 2000,
 }
 
 vim.opt.shortmess:append "c"

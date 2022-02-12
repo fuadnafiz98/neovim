@@ -7,7 +7,6 @@ require "user.lsp"
 require "user.nvim-tree"
 require "user.telescope"
 require "user.impatient"
-require "user.comment"
 require "user.gitsigns"
 require "user.lualine"
 

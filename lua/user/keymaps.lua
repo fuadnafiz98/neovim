@@ -7,7 +7,7 @@ local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
+vim.g.mapleader = "<Space>"
 vim.g.maplocalleader = " "
 
 -- Modes
@@ -16,7 +16,7 @@ vim.g.maplocalleader = " "
 --   visual_mode = "v",
 --   visual_block_mode = "x",
 --   term_mode = "t",
---   command_mode = "c",
+-- command_mode = "c",
 
 -- Normal --
 -- Better window navigation
@@ -67,6 +67,7 @@ nnoremap <C-k> :cprev<CR>
 nnoremap <leader>p "_dP
 nnoremap dd "_dd
 nnoremap <leader><CR> :so ~/.config/nvim/init.lua<CR>
+noremap <leader>/ :Commentary<cr>
 
 
 nnoremap <C-p>           :lua require('telescope.builtin').git_files()<CR>
