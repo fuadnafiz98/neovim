@@ -9,5 +9,3 @@ require "user.telescope"
 require "user.impatient"
 require "user.gitsigns"
 require "user.lualine"
-
-
