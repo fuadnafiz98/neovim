@@ -49,6 +49,7 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"
   use "lewis6991/impatient.nvim"
   use "tpope/vim-commentary"
+  use "ellisonleao/gruvbox.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -79,12 +80,6 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-
-  use({
-    "catppuccin/nvim",
-    as = "catppuccin"
-  })
-  use 'shaunsingh/solarized.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
