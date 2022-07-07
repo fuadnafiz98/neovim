@@ -70,7 +70,7 @@ nnoremap <leader><CR> :so ~/.config/nvim/init.lua<CR>
 noremap <leader>/ :Commentary<cr>
 
 
-nnoremap <C-p>           :lua require('telescope.builtin').git_files()<CR>
+nnoremap <C-p>           :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>ps      :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>f       :lua require('telescope.builtin').find_files()<CR>
 
