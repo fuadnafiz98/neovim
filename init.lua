@@ -1,5 +1,6 @@
 --- Lazy requires mapleader to be set before it is loadedG
 local vim = vim
+
 vim.g.mapleader = " "
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -13,7 +14,11 @@ vim.opt.rtp:prepend(lazypath)
 
 --- Plugins
 require("lazy").setup({
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    'stevearc/conform.nvim', -- formatter
+    opts = {},
+  },
+  { "ellisonleao/gruvbox.nvim" }, -- theme
 
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
@@ -43,7 +48,14 @@ require("lazy").setup({
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  }
+  },
+  --- Telescope
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  "nvim-tree/nvim-web-devicons"
 })
 
 --- Basic
@@ -132,8 +144,8 @@ vim.api.nvim_set_keymap('n', '<C-k>',
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
 --- FZF
-vim.api.nvim_set_keymap("n", "<C-p>", ":GFiles --cached --others --exclude-standard<CR>",
-  { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "<C-p>", ":GFiles --cached --others --exclude-standard<CR>",
+--{ noremap = true, silent = true })
 vim.g.fzf_layout = { down = "~20%" }
 vim.g.fzf_preview_window = { "hidden" }
 vim.g.fzf_colors = {
@@ -331,10 +343,26 @@ require('lspconfig').pyright.setup {
   },
 }
 
----
---local null_ls = require("null-ls")
---null_ls.setup({
--- sources = {
---  null_ls.builtins.diagnostics.mypy,
---},
---})
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+
+require("conform").setup({
+  formatters_by_ft = {
+    python = { "black" },
+    -- Use a sub-list to run only the first available formatter
+    javascript = { { "prettierd", "prettier" } },
+    typescript = { { "prettierd", "prettier" } },
+  },
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
